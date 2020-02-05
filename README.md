@@ -15,16 +15,21 @@ Fork from https://github.com/BMIRDS/deepslide.
 2. Activate the virtual environment
 
     `. ./name-of-virtual-environment/bin/activate`
+    
+3. Download the project 
+
+4. Navigate to the project directory 
+    
+    `cd my/path/to/deepslide-wsi-patch-generator`
 
 3. Install the dependencies using the `requirements.txt` file
 
     `pip install -r requirements.txt`
 
-4. Download the project 
 
-5. Navigate to the `src` folder
+5. Navigate to the `src` directory
 
-    `cd my/path/to/deepslide-wsi-patch-generator/src`
+    `cd src`
 
 
 
