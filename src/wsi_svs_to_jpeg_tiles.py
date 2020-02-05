@@ -54,30 +54,39 @@ def output_jpeg_tiles(image_name, output_path):  # converts svs image with meta 
 
 
 parser = argparse.ArgumentParser(description='Split a WSI at a specific resolution in a .SVS file into .JPEG tiles.')
-parser.add_argument("--input_folder", type=str, help="input folder", required=True)
-parser.add_argument("--output_folder", type=str, help="output folder", required=True)
-parser.add_argument("--start_at", type=str, default=None, help="resume from a certain filename")
-parser.add_argument("--resolution_level", type=str, help="Select resolution level for image to be split."
+parser.add_argument("--input_folder_path", type=str, help="The path to the input folder.", required=True)
+parser.add_argument("--output_folder_path", type=str, help="The path to the output folder."
+                                                      " If output folder doesn't exists at runtime "
+                                                      "the script will create it.",
+                    required=True)
+parser.add_argument("--start_at_image_name", type=str, default=None, help="Resume from a certain filename."
+                                                               " Default value is None.")
+parser.add_argument("--resolution_level", type=int, default=0, help="Select resolution level for image to be split."
                                                          " Low level equals high resolution, lowest level is 0."
-                                                         " Defaults to 0.")
+                                                         " Default value is 0.")
 args = parser.parse_args()
 
-print(args)
+input_folder_path = args.input_folder_path
+output_folder_path = args.output_folder_path
+start_at_image_name = args.start_at_image_name
+resolution_level = args.resolution_level
 
-# input_folder = args.input_folder
-# output_folder = args.output_folder
-# if not os.path.exists(output_folder):
-#     os.makedirs(output_folder)
-#
-# image_names = [f for f in listdir(input_folder) if isfile(join(input_folder, f))]
-# if '.DS_Store' in image_names:
-#     image_names.remove('.DS_Store')
-#
-# if args.start_at is not None:
-#     start = image_names.index(args.start_at)
-#     print("skipping the first", start)
-#     image_names = image_names[start + 2:]
-#
+if not os.path.exists(input_folder_path):
+    sys.exit("Input folder doesn't exist")
+
+if not os.path.exists(output_folder_path):
+    os.makedirs(output_folder_path)
+
+image_names = [f for f in listdir(input_folder_path) if isfile(join(input_folder_path, f))]
+
+if '.DS_Store' in image_names:
+    image_names.remove('.DS_Store')
+
+if start_at_image_name is not None:
+    start = image_names.index(args.start_at)
+    print("skipping the first", start)
+    image_names = image_names[start + 2:]
+
 # for image_name in image_names:
 #     full_image_path = input_folder + '/' + image_name
 #     output_path = output_folder + '/'
