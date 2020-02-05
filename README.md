@@ -38,9 +38,3 @@ Fork from https://github.com/BMIRDS/deepslide.
 For full of possible arguments run
 
         python3.6 wsi_svs_to_jpeg_tiles.py -h
-
-
-
-
-
-
