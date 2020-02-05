@@ -37,6 +37,8 @@ Fork from https://github.com/BMIRDS/deepslide.
 
 ## Description of input parameters
  
- For full list and description of possible arguments run
- 
-        python3.6 wsi_svs_to_jpeg_tiles.py -h
+For full list and description of possible arguments run
+
+```
+python3.6 wsi_svs_to_jpeg_tiles.py -h
+```
