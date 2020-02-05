@@ -20,7 +20,7 @@ Fork from https://github.com/BMIRDS/deepslide.
 
 4. Navigate to the project directory 
     
-        cd my/path/to/deepslide-wsi-patch-generator
+        cd my/path/to/deepslide-wsi-jpeg-patch-generator
 
 3. Install the dependencies using the `requirements.txt` file
 
