@@ -6,6 +6,8 @@ Fork from https://github.com/BMIRDS/deepslide.
 
 ## How to run
 
+1. [Install Openslide](https://openslide.org/download/) using your OS package manager (apt, yum, brew etc.)
+
 1. Create a virtual environment with a Python 3.6 interpreter
 
     `python3.6 -m venv name-of-virtual-environment`
