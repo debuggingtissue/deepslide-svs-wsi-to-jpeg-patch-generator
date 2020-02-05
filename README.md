@@ -31,6 +31,16 @@ Fork from https://github.com/BMIRDS/deepslide.
 
     `cd src`
 
+6. Run the Python script
+    
+    `python3.6 wsi_svs_to_jpeg_tiles.py  -i /path/to/svs_image_directory -o /path/to/jpg_tiles_folder
+
+For full of possible arguments run
+
+     `python3.6 wsi_svs_to_jpeg_tiles.py -h`
+`
+    
+
 
 
 
