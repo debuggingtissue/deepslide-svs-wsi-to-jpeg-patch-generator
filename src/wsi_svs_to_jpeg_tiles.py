@@ -23,7 +23,6 @@ class Axis(Enum):
 
 
 def get_start_positions(width, height, window_size, axis):
-
     start_positions = []
 
     start_position = 0
@@ -46,7 +45,7 @@ def output_jpeg_tiles(full_image_path, full_output_path,
     width, height = img.level_dimensions[resolution_level]
     # img_np_rgb = np.zeros((23000, 30000, 3), dtype=np.uint8)
 
-    print("converting", full_image_path, "with width", width, ",height", height, "and overlap", overlapping_percentage)
+    print("converting ", full_image_path, " with width ", width, ", height ", height, " and overlap ", overlapping_percentage)
 
     x_start_positions = get_start_positions(width, height, window_size, Axis.X)
     y_start_positions = get_start_positions(width, height, window_size, Axis.Y)
@@ -54,37 +53,33 @@ def output_jpeg_tiles(full_image_path, full_output_path,
     print(x_start_positions)
     print(y_start_positions)
 
+    for x_index, x_start_position in enumerate(x_start_positions):
+        for y_index, y_start_position in enumerate(y_start_positions):
 
-    # for incre_x in range(
-    #         increment_x):  # have to read the image in patches since it doesn't let me do it for larger things
-    #     for incre_y in range(increment_y):
-    #
-    #         begin_x = window_size * incre_x
-    #         end_x = min(width, begin_x + window_size)
-    #         begin_y = window_size * incre_y
-    #         end_y = min(height, begin_y + window_size)
-    #         patch_width = end_x - begin_x
-    #         patch_height = end_y - begin_y
-    #
-    #         patch = img.read_region((begin_x, begin_y), 0, (patch_width, patch_height))
-    #         patch.load()
-    #         patch_rgb = Image.new("RGB", patch.size, (255, 255, 255))
-    #         patch_rgb.paste(patch, mask=patch.split()[3])
-    #
-    #         # compress the image
-    #         patch_rgb = patch_rgb.resize(
-    #             (int(patch_rgb.size[0] / compression_factor), int(patch_rgb.size[1] / compression_factor)),
-    #             Image.ANTIALIAS)
-    #
-    #         # save the image
-    #         output_subfolder = join(full_output_path, full_image_path.split('/')[-1][:-4])
-    #         if not os.path.exists(output_subfolder):
-    #             os.makedirs(output_subfolder)
-    #         output_image_name = join(output_subfolder,
-    #                                  full_image_path.split('/')[-1][:-4] + '_' + str(incre_x) + '_' + str(
-    #                                      incre_y) + '.jpg')
-    #         # print(output_image_name)
-    #         patch_rgb.save(output_image_name)
+            x_end_position = min(width, x_start_position + window_size)
+            y_end_position = min(height, y_start_position + window_size)
+            patch_width = x_end_position - x_start_position
+            patch_height = y_end_position - x_start_position
+
+            patch = img.read_region((x_start_position, y_start_position), 0, (patch_width, patch_height))
+            patch.load()
+            patch_rgb = Image.new("RGB", patch.size, (255, 255, 255))
+            patch_rgb.paste(patch, mask=patch.split()[3])
+
+            # compress the image
+            patch_rgb = patch_rgb.resize(
+                (int(patch_rgb.size[0] / compression_factor), int(patch_rgb.size[1] / compression_factor)),
+                Image.ANTIALIAS)
+
+            # save the image
+            output_subfolder = join(full_output_path, full_image_path.split('/')[-1][:-4])
+            if not os.path.exists(output_subfolder):
+                os.makedirs(output_subfolder)
+            output_image_name = join(output_subfolder,
+                                     full_image_path.split('/')[-1][:-4] + '_' + str(x_index) + '_' + str(
+                                         y_index) + '.jpg')
+            # print(output_image_name)
+            patch_rgb.save(output_image_name)
 
 
 parser = argparse.ArgumentParser(description='Split a WSI at a specific resolution in a .SVS file into .JPEG tiles.')
