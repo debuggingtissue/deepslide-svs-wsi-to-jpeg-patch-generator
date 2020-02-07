@@ -1,4 +1,4 @@
-# deepslide-wsi-jpeg-patch-generator
+# deepslide-svs-wsi-to-jpeg-patch-generator
 
 Tool for splitting an image at a specific resolution from a .SVS into .JPEG tiles. 
 
