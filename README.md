@@ -55,7 +55,10 @@ Fork from https://github.com/BMIRDS/deepslide.
     * Resume from a certain filename. Default value is None.
  
  * `-r {0,1,2,3}, --resolution_level {0,1,2,3}`
-    * Full path to the directory where you wish to store the labeled files 
+    *  Resolution level for image to be split. Low level
+                        equals high resolution, lowest level is 0. Choose
+                        between {0, 1, 2, 3}. Default value is 0.
+
  
  * `-op OVERLAP_PERCENTAGE, --overlap_percentage OVERLAP_PERCENTAGE`
     * Overlapping percentage between patches. Default value
