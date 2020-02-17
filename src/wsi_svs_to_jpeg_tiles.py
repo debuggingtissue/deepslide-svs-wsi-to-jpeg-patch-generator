@@ -10,7 +10,7 @@ import openslide
 
 import argparse
 
-compression_factor = 3
+compression_factor = 1
 Image.MAX_IMAGE_PIXELS = 1e10
 
 from enum import Enum, IntEnum
@@ -102,9 +102,10 @@ def output_jpeg_tiles(full_image_path, full_output_path,
             print("Tile size for tile number " + str(tile_number) + ":" + str(patch.size))
 
             # compress the image
-            patch_rgb = patch_rgb.resize(
-                (int(patch_rgb.size[0] / compression_factor), int(patch_rgb.size[1] / compression_factor)),
-                Image.ANTIALIAS)
+            #patch_rgb = patch_rgb.resize(
+            #    (int(patch_rgb.size[0] / compression_factor), int(patch_rgb.size[1] / compression_factor)),
+            #    Image.ANTIALIAS)
+
 
             # save the image
             output_subfolder = join(full_output_path, full_image_path.split('/')[-1][:-4])
